@@ -6,25 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpine tt</title>
     <script src="tailwindcss.js"></script>
+
     <script src="alpine.js" defer></script>
 </head>
 
 <body class="text-center mx-auto my-8">
     <h1 class="text-3xl my-8" x-html="objstr">bind</h1>
-    <div x-data="{
-        myInput:'something',
-        isDisabled:false,
-        myStyle:'color:red;',
-        myClass:'bg-blue-400 p-4 text-white w-1/2 mx-auto text-center'
-    }">
-    <input :value="myInput" class="p-1 rounded shadow border border-1"/>
-    <input :disabled="isDisabled" :value="myInput" class="p-1 rounded shadow border border-1"/>
-    <div :style="myStyle + 'border:1px solid black'">my style</div>
-    <div :class="myClass + ' text-3xl font-bold'">my class</div>
+    <div x-data="component1">
+        <input :value="myInput" class="p-1 rounded shadow border border-1" />
+        <input :disabled="isDisabled" :value="myInput" class="p-1 rounded shadow border border-1" />
+        <div :style="myStyle + 'border:1px solid black'">my style</div>
+        <div :class="myClass + ' text-3xl font-bold'">my class</div>
 
 
     </div>
-    
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('component1', () => ({
+                init() {
+                    console.log('hi')
+                },
+                myInput: 'something',
+                isDisabled: false,
+                myStyle: 'color:red;',
+                myClass: 'bg-blue-400 p-4 text-white w-1/2 mx-auto text-center',             
+
+
+            }))
+        })
+    </script>
+
 </body>
 
 </html>
