@@ -7,44 +7,27 @@
     <title>Document</title>
     <script src="tailwindcss.js"></script>
     <script defer src="alpine.js"></script>
+    
 
 </head>
 
 <body class="text-center mx-auto my-8">
     <h1 class="text-3xl font-bold text-gray-600 mb-4">x-bind</h1>
     <div x-data="component1()" x-init="console.log('hi2')">
-        <input class="p-1 rounded shadow border border-1" x-bind:value="myInput" /><br>
-        <input :disabled="isDisabled" class="p-1 rounded shadow border border-1" :value="myInput" /><br>
-        <div :style="myStyle">my style</div><br>
+        <input x-model="myInput" class="p-1 rounded shadow border border-1" x-bind:value="myInput" /><br>
+        <input @keyup="keyUpVal" class="p-1 rounded shadow border border-1" :value="myInput" /><br>
+        <div x-text="myInput">my style</div><br>
         <div :class="myClass+' text-3xl font-bold'">my class</div>
-        
-        <template x-if="isShow">
-            <div>show</div>
-        </template>
 
+        <div :class="'bg-'+color+'-500 w-8 h-8 mx-auto text-center mt-8 mb-3'"></div>
+        <select x-model="color">
+            <option>red</option>
+            <option>blue</option>
+            <option>green</option>
+        </select>
     </div>
-    <div x-data="{ open: false }">
-        <button x-on:click="open = ! open">Toggle Dropdown</button>
-
-        <div x-show="open" x-transition>
-            Dropdown Contents...
-        </div>
-    </div>
-    <script>
-        function component1() {
-            return {
-                init() {
-                    console.log('hi');
-                    this.myInput = 'something2'
-                },
-                isShow: false,
-                myInput: 'something',
-                isDisabled: false,
-                myStyle: 'color:red',
-                myClass: 'bg-blue-400 p-4 text-white w-1/2 mx mx-auto text-center'
-            }
-        }
-    </script>
+    <script src="app.js"></script>
+    
 </body>
 
 </html>
