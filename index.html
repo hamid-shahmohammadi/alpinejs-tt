@@ -11,23 +11,30 @@
 
 </head>
 
-<body class="text-center mx-auto my-8">
-    <h1 class="text-3xl font-bold text-gray-600 mb-4">x-bind</h1>
-    <div x-data="component1()" x-init="console.log('hi2')">
-        <input x-model="myInput" class="p-1 rounded shadow border border-1" x-bind:value="myInput" /><br>
-        <input @keyup="keyUpVal" class="p-1 rounded shadow border border-1" :value="myInput" /><br>
-        <div x-text="myInput">my style</div><br>
-        <div :class="myClass+' text-3xl font-bold'">my class</div>
-
-        <div :class="'bg-'+color+'-500 w-8 h-8 mx-auto text-center mt-8 mb-3'"></div>
-        <select x-model="color">
-            <option>red</option>
-            <option>blue</option>
-            <option>green</option>
-        </select>
-    </div>
-    <script src="app.js"></script>
-    
+<body class="mx-8">
+    <h1 class="text-3xl font-bold text-gray-600 mb-4">tab</h1>
+    <section x-data="{
+        tab:1,
+        TabNormalClass:'px-5 py-3 rounded-xl rounded-b cursor-pointer ',
+        TabHiClass:'bg-gray-400',
+        TabClass:'bg-gray-200 hover:bg-gray-300'
+    }">
+        <span @click="tab=1" :class="tab==1 ? TabNormalClass+TabHiClass : TabNormalClass+TabClass">Tab1</span>
+        <span @click="tab=2" :class="tab==2 ? TabNormalClass+TabHiClass : TabNormalClass+TabClass">Tab2</span>
+        <span @click="tab=3" :class="tab==3 ? TabNormalClass+TabHiClass : TabNormalClass+TabClass">Tab3</span>
+        <div x-show="tab==1" id="tab1Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+            <b>Content tab 1:</b>
+            tab 1, dolor sit amet consectetur adipisicing elit. Fugiat eligendi iste, voluptatibus voluptatem veritatis temporibus sed laudantium quasi at doloremque officiis ea neque optio dolore quisquam asperiores voluptatum deleniti animi?
+        </div>
+        <div x-show="tab==2" id="tab2Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+            <b>Content tab 2:</b>
+            tab 2, dolor sit amet consectetur adipisicing elit. Fugiat eligendi iste, voluptatibus voluptatem veritatis temporibus sed laudantium quasi at doloremque officiis ea neque optio dolore quisquam asperiores voluptatum deleniti animi?
+        </div>
+        <div x-show="tab==3" id="tab3Content" class="mt-4 ml-2 block-inline" style="width: 350px;">
+            <b>Content tab 3:</b>
+            tab 3, dolor sit amet consectetur adipisicing elit. Fugiat eligendi iste, voluptatibus voluptatem veritatis temporibus sed laudantium quasi at doloremque officiis ea neque optio dolore quisquam asperiores voluptatum deleniti animi?
+        </div>
+    </section>
 </body>
 
 </html>
