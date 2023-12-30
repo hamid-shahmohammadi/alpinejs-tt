@@ -10,14 +10,19 @@
 </head>
 
 <body class="mx-8">
-    <h1 class="text-3xl font-bold text-gray-600 mb-4">for</h1>
-    <div x-data="component1">
-        <template x-for="todo in todos" :key="todo.id">
-            <li x-text="todo.title + ' : ' + todo.id"></li>
-        </template>
+    <h1 class="text-3xl font-bold text-gray-600 mb-4">x-transition</h1>
+    <div x-data="{ open: false }">
+        <button class="bg-blue-700 rounded-md px-3 py-2 text-white mb-2" @click="open = ! open">Toggle</button>
+
+        <div x-show="open" x-transition:enter="transition ease-out duration-100"
+            x-transition:enter-start="opacity-0 scale-90"
+             x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-1000"
+             x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-90">Hello 👋</div>
     </div>
-    
-    <script src="app.js"></script>
+
+
 </body>
 
 </html>
